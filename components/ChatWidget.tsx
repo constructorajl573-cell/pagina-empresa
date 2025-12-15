@@ -23,7 +23,7 @@ const ChatWidget: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+
   // Generate a random session ID and persist it for the session lifetime
   const sessionIdRef = useRef<string>(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 
@@ -43,7 +43,7 @@ const ChatWidget: React.FC = () => {
 
   const handleSendMessage = async (e?: React.FormEvent) => {
     e?.preventDefault();
-    
+
     if (!inputValue.trim()) return;
 
     const userMessage: Message = {
@@ -74,7 +74,7 @@ const ChatWidget: React.FC = () => {
       }
 
       const data = await response.json();
-      
+
       // Expected format based on user description: { response: "text" }
       const botText = data.response || "Lo siento, hubo un problema al procesar tu mensaje.";
 
@@ -119,14 +119,14 @@ const ChatWidget: React.FC = () => {
               <span className="material-symbols-outlined text-white text-sm">smart_toy</span>
             </div>
             <div>
-              <h3 className="font-bold text-white text-base">Asistente Virtual</h3>
+              <h3 className="font-bold text-white text-base">Asistente J&L</h3>
               <div className="flex items-center text-primary-100 text-xs opacity-90">
                 <span className="w-2 h-2 rounded-full bg-green-300 mr-2 animate-pulse"></span>
                 En línea
               </div>
             </div>
           </div>
-          <button 
+          <button
             onClick={toggleChat}
             className="text-white/80 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
           >
@@ -144,13 +144,13 @@ const ChatWidget: React.FC = () => {
               <div
                 className={`
                   max-w-[80%] p-3 rounded-2xl shadow-sm relative text-sm leading-relaxed
-                  ${msg.sender === 'user' 
-                    ? 'bg-primary text-white rounded-br-sm' 
+                  ${msg.sender === 'user'
+                    ? 'bg-primary text-white rounded-br-sm'
                     : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-sm border border-gray-100 dark:border-gray-700'}
                 `}
               >
                 <div className="whitespace-pre-wrap">{msg.text}</div>
-                <div 
+                <div
                   className={`
                     text-[10px] mt-1 text-right opacity-70
                     ${msg.sender === 'user' ? 'text-primary-100' : 'text-gray-400'}
@@ -161,7 +161,7 @@ const ChatWidget: React.FC = () => {
               </div>
             </div>
           ))}
-          
+
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl rounded-bl-sm shadow-sm border border-gray-100 dark:border-gray-700">
@@ -195,8 +195,8 @@ const ChatWidget: React.FC = () => {
               disabled={!inputValue.trim() || isLoading}
               className={`
                 p-2 rounded-lg flex items-center justify-center transition-all
-                ${!inputValue.trim() || isLoading 
-                  ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed' 
+                ${!inputValue.trim() || isLoading
+                  ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
                   : 'bg-primary text-white shadow-md hover:bg-emerald-green active:scale-95'}
               `}
             >
@@ -204,9 +204,9 @@ const ChatWidget: React.FC = () => {
             </button>
           </form>
           <div className="text-center mt-2">
-             <p className="text-[10px] text-gray-400 dark:text-gray-600">
-               Impulsado por IA • Puede cometer errores
-             </p>
+            <p className="text-[10px] text-gray-400 dark:text-gray-600">
+              Impulsado por IA • Puede cometer errores
+            </p>
           </div>
         </div>
       </div>
@@ -224,11 +224,11 @@ const ChatWidget: React.FC = () => {
         <span className="material-symbols-outlined text-white text-3xl transition-transform duration-300">
           {isOpen ? 'close' : 'chat_bubble'}
         </span>
-        
+
         {!isOpen && (
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 border-2 border-white rounded-full flex items-center justify-center">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-             <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
           </span>
         )}
       </button>
