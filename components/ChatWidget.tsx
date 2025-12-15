@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './ChatWidget.css';
 
 interface Message {
@@ -149,7 +150,27 @@ const ChatWidget: React.FC = () => {
                     : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-sm border border-gray-100 dark:border-gray-700'}
                 `}
               >
-                <div className="whitespace-pre-wrap">{msg.text}</div>
+                <div className="text-sm leading-relaxed">
+                  <ReactMarkdown
+                    components={{
+                      a: ({ node, ...props }) => (
+                        <a
+                          {...props}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`underline font-medium ${msg.sender === 'user' ? 'text-white' : 'text-primary hover:text-emerald-green'}`}
+                        />
+                      ),
+                      p: ({ node, ...props }) => <p {...props} className="mb-1 last:mb-0" />,
+                      ul: ({ node, ...props }) => <ul {...props} className="list-disc ml-4 mb-2 space-y-1" />,
+                      ol: ({ node, ...props }) => <ol {...props} className="list-decimal ml-4 mb-2 space-y-1" />,
+                      li: ({ node, ...props }) => <li {...props} />,
+                      strong: ({ node, ...props }) => <strong {...props} className="font-bold" />,
+                    }}
+                  >
+                    {msg.text}
+                  </ReactMarkdown>
+                </div>
                 <div
                   className={`
                     text-[10px] mt-1 text-right opacity-70
