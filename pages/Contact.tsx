@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Icon from '../components/Icon';
 
-const CONTACT_WEBHOOK_URL = 'https://constructorajl2004.app.n8n.cloud/webhook-test/contact-form';
+const CONTACT_WEBHOOK_URL = 'https://constructorajl2004.app.n8n.cloud/webhook/contact-form';
 
 interface FormData {
     name: string;
