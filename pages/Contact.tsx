@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Icon from '../components/Icon';
 
-const CONTACT_WEBHOOK_URL = 'https://constructorajl2004.app.n8n.cloud/webhook-test/contact-form';
+const CONTACT_WEBHOOK_URL = 'https://constructorajl2004.app.n8n.cloud/webhook/contact-form';
 
 interface FormData {
     name: string;
@@ -35,18 +35,12 @@ const Contact: React.FC = () => {
         setStatus('submitting');
 
         try {
-            const payload = {
-                ...formData,
-                nombre: formData.name,
-                asunto: formData.interest
-            };
-
             const response = await fetch(CONTACT_WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload),
+                body: JSON.stringify(formData),
             });
 
             if (response.ok) {
